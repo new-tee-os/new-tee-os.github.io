@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>Keystone 学习笔记 | Hexo</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/github.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="Hexo"><meta name="msapplication-starturl" content="https://new-tee-os.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="Keystone 学习笔记 | Hexo"><meta property="og:site_name" content="Hexo"><meta property="og:type" content="article"><meta property="og:url" content="https://new-tee-os.github.io/2021-04/keystone-notes/"><meta property="og:locale" content="en"><meta name="description" content="Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是选择在现有指令集的基础上进行大量扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成 - John Doe - Hexo"><meta name="keywords" content="keystone"><meta property="og:image" content="https://new-tee-os.github.io/2021-04/keystone-notes/keystone-docker-layers.png"><meta property="article:published_time" content="2021-04-24T17:54:06.000Z"><meta property="article:modified_time" content="2021-04-24T15:00:15.965Z"><meta property="og:updated_time" content="2021-04-24T15:00:15.965Z"><meta property="article:author" content="John Doe"><meta property="article:tag" content="keystone"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="https://new-tee-os.github.io/2021-04/keystone-notes/">
+
+    <meta name="generator" content="Hexo 5.4.0">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "https://new-tee-os.github.io/2021-04/keystone-notes/",
+    "@type": "BlogPosting",
+    "logo": "https://new-tee-os.github.io/img/suka-favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://new-tee-os.github.io/2021-04/keystone-notes/"
+    },
+    "headline": "Keystone 学习笔记 | Hexo",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://new-tee-os.github.io/img/suka-favicon.ico"
+    },
+    
+    "datePublished": "2021-04-24T17:54:06.000Z",
+    "dateModified": "2021-04-24T15:00:15.965Z",
+    "author": {
+        "@type": "Person",
+        "name": "John Doe",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://new-tee-os.github.io/img/default_avatar.png"
+        },
+        "description": "Hi, nice to meet you."
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hexo",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://new-tee-os.github.io/img/suka-favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://new-tee-os.github.io/search?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "keystone",
+    "description": "Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是选择在现有指令集的基础上进行大量扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成 - John Doe - Hexo"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+</head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">Hexo</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                Hi, nice to meet you.
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">Home</a>
+    
+    
+        <a href="/archives/" class="navbar-link">Archives</a>
+    
+    
+    
+    
+        <div class="dropdown dropdown-right">
+    <a class="navbar-link dropdown-toggle" tabindex="0">Share</a>
+    <ul class="menu share-menu">
+
+        <!-- Share Weibo -->
+        
+        <li class="menu-item">
+            <a href="http://service.weibo.com/share/share.php?appkey=&title=Hexo&url=https://new-tee-os.github.io&pic=https://new-tee-os.github.io/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">Share to Weibo</a>
+        </li>
+        
+
+        <!-- Share Twitter -->
+        
+        <li class="menu-item">
+            <a href="https://twitter.com/intent/tweet?text=Hexo&url=https://new-tee-os.github.io&via=John Doe" target="_blank" rel="external noopener noreferrer nofollow">Share to Twitter</a>
+        </li>
+        
+
+        <!-- Share Facebook -->
+        
+        <li class="menu-item">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://new-tee-os.github.io" target="_blank" rel="external noopener noreferrer nofollow">Share to Facebook</a>
+        </li>
+        
+
+        <!-- Share Google+ -->
+        
+        <li class="menu-item">
+            <a href="https://plus.google.com/share?url=https://new-tee-os.github.io" target="_blank" rel="external noopener noreferrer nofollow">Share to Google+</a>
+        </li>
+        
+
+        <!-- Share LinkedIn -->
+        
+        <li class="menu-item">
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://new-tee-os.github.io&title=Keystone 学习笔记" target="_blank" rel="external noopener noreferrer nofollow">Share to LinkedIn</a>
+        </li>
+        
+
+        <!-- Share QQ -->
+        
+        <li class="menu-item">
+            <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=Keystone 学习笔记&summary=&pics=https://new-tee-os.github.io/img/suka-favicon.ico&url=https://new-tee-os.github.io" target="_blank" rel="external noopener noreferrer nofollow"> Share to QQ</a>
+        </li>
+        
+
+        <!-- Share Telegram -->
+        
+        <li class="menu-item">
+            <a href="https://t.me/share/url?url=https://new-tee-os.github.io&text=Keystone 学习笔记" target="_blank" rel="external noopener noreferrer nofollow">Share to Telegram</a>
+        </li>
+        
+
+        <!-- QRCode -->
+        
+        <li class="menu-item">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB5UlEQVR42u3bS27DMAxFUe9/0+0oQBGIj1dpAljM9aRBPtIZ2KRIqdfPDa9LlChRohaoK1zLHy4+f7x+/uz5O908ouagqsmr9+LABYzMI2oWig7WIVbfwQ+DqK9DVQGTPhyiRFU3bUJ2YFHfg+pu0BQI0yLwI6sEUbdHpQX9O/++rZoRdWtU23Qogh4tNj/SdRF1axQpMGlgTMUDGl/UCBRpbJBETR+E1WtRs1DVF1c3dWp27ATZcvEoahSqC4KpCVYFSJK4Rc1DpU2h1Fjtgm56WMrCVNQoFN047N5PhWjXIBE1A0UaENWibKdoTcle1CwUSpRNkZkmToEUBU9Rx6HIQZt2MHhYp10AihqBIjdsbEqEgrUba2uVIOoY1G6go018ujlZBk9Rx6NSsu2aHjuFBD4sIepYFJk0NUBSsOwWf7jBIeooFP4BWKzRRkbZUBE1CkUWbyQZd8VChIoaiyKJlh6oSGO/tAkp6hjUTmMeTdA8JMviQtQIFDkoSGHpMAXaBBA1AoUOGl/8Hy9IIt7quog6ErVzIJDC6CJQ1FxUt8Dvbn4SJP/d4BA1BkUTLtoUSkFa1NehusNfpNGRgraoWahXEy0NtiTRi5qDIk2I2JgAibw7LCZqDupOlyhRokT9uX4Bj4vwwMllXaUAAAAASUVORK5CYII=" alr="QRCode">
+        </li>
+        
+
+    </ul>
+</div>
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">Keystone 学习笔记</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="/img/default_avatar.png" src="/img/suka-lazyload.gif" alt="John Doe's Avatar">
+        <span>2021-04-24</span>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">Share the post</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=Keystone 学习笔记&url=https://new-tee-os.github.io/2021-04/keystone-notes/&pic=https://new-tee-os.github.io/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">Share to Weibo</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=Keystone 学习笔记&url=https://new-tee-os.github.io/2021-04/keystone-notes/&via=John Doe" target="_blank" rel="external noopener noreferrer nofollow">Share to Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://new-tee-os.github.io/2021-04/keystone-notes/" target="_blank" rel="external noopener noreferrer nofollow">Share to Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=https://new-tee-os.github.io/2021-04/keystone-notes/" target="_blank" rel="external noopener noreferrer nofollow">Share to Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://new-tee-os.github.io/2021-04/keystone-notes/&title=Hexo" target="_blank" rel="external noopener noreferrer nofollow">Share to LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=Hexo&title=Hexo&summary=&pics=https://new-tee-os.github.io/img/suka-favicon.ico&url=https://new-tee-os.github.io/2021-04/keystone-notes/" target="_blank" rel="external noopener noreferrer nofollow"> Share to QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=https://new-tee-os.github.io/2021-04/keystone-notes/&text=Hexo" target="_blank" rel="external noopener noreferrer nofollow">Share to Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJQAAACUCAAAAABQV18IAAAB5UlEQVR42u3bS27DMAxFUe9/0+0oQBGIj1dpAljM9aRBPtIZ2KRIqdfPDa9LlChRohaoK1zLHy4+f7x+/uz5O908ouagqsmr9+LABYzMI2oWig7WIVbfwQ+DqK9DVQGTPhyiRFU3bUJ2YFHfg+pu0BQI0yLwI6sEUbdHpQX9O/++rZoRdWtU23Qogh4tNj/SdRF1axQpMGlgTMUDGl/UCBRpbJBETR+E1WtRs1DVF1c3dWp27ATZcvEoahSqC4KpCVYFSJK4Rc1DpU2h1Fjtgm56WMrCVNQoFN047N5PhWjXIBE1A0UaENWibKdoTcle1CwUSpRNkZkmToEUBU9Rx6HIQZt2MHhYp10AihqBIjdsbEqEgrUba2uVIOoY1G6go018ujlZBk9Rx6NSsu2aHjuFBD4sIepYFJk0NUBSsOwWf7jBIeooFP4BWKzRRkbZUBE1CkUWbyQZd8VChIoaiyKJlh6oSGO/tAkp6hjUTmMeTdA8JMviQtQIFDkoSGHpMAXaBBA1AoUOGl/8Hy9IIt7quog6ErVzIJDC6CJQ1FxUt8Dvbn4SJP/d4BA1BkUTLtoUSkFa1NehusNfpNGRgraoWahXEy0NtiTRi5qDIk2I2JgAibw7LCZqDupOlyhRokT9uX4Bj4vwwMllXaUAAAAASUVORK5CYII=" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone-%E4%B8%8E-RISC-V"><span class="post-toc-number">1.</span> <span class="post-toc-text">Keystone 与 RISC-V</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone-%E6%9E%B6%E6%9E%84%E6%80%BB%E8%A7%88"><span class="post-toc-number">2.</span> <span class="post-toc-text">Keystone 架构总览</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Keystone-%E6%BA%90%E4%BB%A3%E7%A0%81%E7%BB%84%E7%BB%87%E7%BB%93%E6%9E%84"><span class="post-toc-number">3.</span> <span class="post-toc-text">Keystone 源代码组织结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E4%BB%8E-Keystone-%E7%9A%84-Docker-%E9%95%9C%E5%83%8F%E4%B8%AD%E6%8F%90%E5%8F%96%E6%9C%89%E7%94%A8%E7%9A%84%E6%96%87%E4%BB%B6"><span class="post-toc-number">4.</span> <span class="post-toc-text">从 Keystone 的 Docker 镜像中提取有用的文件</span></a></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <p>Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是选择在现有指令集的基础上进行大量扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成本。</p>
+<h2 id="Keystone-与-RISC-V"><a href="#Keystone-与-RISC-V" class="headerlink" title="Keystone 与 RISC-V"></a>Keystone 与 RISC-V</h2><p>在实现上，Keystone 主要利用了 RISC-V 的以下这些特性：</p>
+<ul>
+<li>RISC-V 通过 M, S, U 三个特权模式，将 CPU 上运行的代码分为 固件，操作系统，用户程序 三大层级。其中 M 模式运行的通常是固件上的代码，并且拥有对于机器硬件的最高权限。Keystone 对 OpenSBI 这一开源 RISC-V 固件进行了一定的扩展，称为 <strong>security monitor</strong> (<strong>SM</strong>)，以提供高于操作系统的安全管理功能。</li>
+<li>但是，仅有安全管理功能是不够的，TEE 必须保证 Enclave 与 host OS 之间的可靠 <strong>内存隔离</strong>。而在 RISC-V 上，S 模式拥有对于页表的完全控制权，因此在理论上，任何一个 S 模式的程序都可以通过操作分页功能来访问到所有的物理内存。因此，仅靠页表来限制 S 模式的内存访问是不可行的。</li>
+<li>但除了页表之外，RISC-V 还提供了称为 <strong>物理内存保护</strong>（physical memory protection, PMP）的功能来进一步限制对物理内存的访问。通常 PMP 提供 8 个寄存器，可以设置 8 个内存区域的访问权限，并且这些寄存器均只能在 M 模式下访问。Keystone 便是利用 PMP 来实现 Enclave 对 host OS 的内存隔离。</li>
+</ul>
+<p>除了内存隔离和与 host OS 的有限交互功能之外，一个 Keystone Enclave 与一个普通的操作系统套件并无二致，它们都运行在 S 模式下，并且可以使用 S 模式提供的所有功能。</p>
+<h2 id="Keystone-架构总览"><a href="#Keystone-架构总览" class="headerlink" title="Keystone 架构总览"></a>Keystone 架构总览</h2><p>我们可以把 Keystone 的架构分为 硬件，M 模式，S 模式 三大部分，详细介绍如下。</p>
+<p>【TODO……】</p>
+<h2 id="Keystone-源代码组织结构"><a href="#Keystone-源代码组织结构" class="headerlink" title="Keystone 源代码组织结构"></a>Keystone 源代码组织结构</h2><p>Keystone Enclave 的所有源代码均托管在其 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave">GitHub 组织</a> 下。由于 Keystone 尚处于测试阶段，因此没有稳定的发行周期，其编译脚本会经常性地通过 <code>git pull</code> 直接从 GitHub 上拉取代码。因此在编译前，需要准备好稳定的网络。</p>
+<p>Keystone Enclave 有两个主要的入口点：</p>
+<ul>
+<li>一个是大而全的套件 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone">keystone</a>，其中包含了 Keystone 所需的全部组件，包括 Keystone SDK，security monitor，Eyrie runtime，QEMU 等。由于其安装配置步骤较为复杂，并且对环境稳定性有较大要求，该 repo 提供一个预编译的 Docker 镜像帮助配置环境。</li>
+<li>一个是 Keystone SDK <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone-sdk">keystone-sdk</a>，仅提供编译 Enclave 所需的部分头文件和库，不提供 QEMU 模拟器等运行环境。适合已经有 Keystone 运行环境的用户使用。</li>
+</ul>
+<p>Keystone 的源代码大量使用 git submodules 的方式进行组织，比如上文中提到的 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone-sdk">keystone-sdk</a> 实际上是 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone">keystone</a> 的一部分。</p>
+<p>由于我们没有支持 Keystone 的 RISC-V 开发板，<a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone">keystone</a> 是我们的唯一选择。Keystone 官方提供两种方式来帮助开发者搭建 Keystone 开发环境，分别是 Docker 镜像和手动编译方式。当然，您也可以选择直接从 Keystone 的 Docker 镜像中提取所需的文件，见下文。</p>
+<h2 id="从-Keystone-的-Docker-镜像中提取有用的文件"><a href="#从-Keystone-的-Docker-镜像中提取有用的文件" class="headerlink" title="从 Keystone 的 Docker 镜像中提取有用的文件"></a>从 Keystone 的 Docker 镜像中提取有用的文件</h2><p>完整的 Keystone 镜像可能会过大，有时我们可能只需要其中的一小部分（比如我们可能只需要一个 QEMU 作为运行环境）。由于 Keystone 的 Docker 镜像是已经预先编译好的，我们可以尝试从 Docker Hub 上直接下载 Keystone 的镜像，并提取我们所需要的文件。</p>
+<p>注意，该镜像中的 QEMU 是动态链接的，因此系统上需要安装有所需的库，否则 QEMU 将无法正常启动。笔者总结的依赖列表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glib2 zlib pixman util-linux-libs gcc-libs libffi pcre</span><br></pre></td></tr></table></figure>
+
+<p>如果以上的依赖列表不能解决您的问题，您也可以尝试直接从 Docker 镜像中提取所需的库文件。</p>
+<p>从 Docker Hub 下载镜像可以参考这篇问答：<a target="_blank" rel="noopener" href="https://devops.stackexchange.com/questions/2731/downloading-docker-images-from-docker-hub-without-using-docker">Downloading Docker Images from Docker Hub without using Docker</a>，参见题主的 <strong>UPDATE 2</strong> 部分。以下列出所需使用的 URL 以供参考。</p>
+<ul>
+<li>认证：<code>https://auth.docker.io/token?service=registry.docker.io&amp;scope=repository:keystoneenclaveorg/keystone:pull</code></li>
+<li>Pull image manifest: <code>https://registry-1.docker.io/v2/keystoneenclaveorg/keystone/manifests/master</code>（注意分支名不是 <code>latest</code>）</li>
+<li>下载镜像：<code>https://registry-1.docker.io/v2/keystoneenclaveorg/keystone/blobs/sha256:$SHA256</code></li>
+</ul>
+<p>在「Pull an image manifest」步骤，Docker Hub 会列出 10 多个镜像，如下图：</p>
+<img src="/2021-04/keystone-notes/keystone-docker-layers.png" class="">
+
+<p>我们需要的是顺数第二个，其中包含已经完整编译好的 Keystone 套件。在本篇文章写作时，镜像 SHA256 为 <code>799863999c96decb76c0946b91375fcc1c528be466548cf8c55389592031a397</code>，大小约为 3.56 GB。</p>
+<p>镜像格式为 tar.gz，可以通过 curl 参数 <code>-o keystone.tar.gz</code> 将其直接保存下来。（小提示：如果因为网络环境不稳定导致下载中断，可以添加 <code>-C -</code> 参数恢复下载。）</p>
+<hr>
+<p>镜像下载完成之后，即可从中提取我们所需要的文件。为了运行完整的 Keystone 测试套件，我们需要的文件列表如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keystone&#x2F;build&#x2F;bootrom.build&#x2F;bootrom.bin</span><br><span class="line">keystone&#x2F;build&#x2F;bootrom.build&#x2F;bootrom.elf</span><br><span class="line">keystone&#x2F;build&#x2F;sm.build&#x2F;platform&#x2F;generic&#x2F;firmware&#x2F;fw_payload.bin</span><br><span class="line">keystone&#x2F;build&#x2F;sm.build&#x2F;platform&#x2F;generic&#x2F;firmware&#x2F;fw_payload.elf</span><br><span class="line">keystone&#x2F;build&#x2F;buildroot.build&#x2F;images&#x2F;rootfs.ext2</span><br><span class="line">keystone&#x2F;qemu&#x2F;riscv64-softmmu&#x2F;qemu-system-riscv64</span><br><span class="line">keystone&#x2F;build&#x2F;scripts&#x2F;*</span><br></pre></td></tr></table></figure>
+
+<p>（注：以上这些文件自上而下分别是：2 个 Keystone SM 固件，2 个 Linux 内核，Linux 根文件系统，QEMU RISC-V，以及 Keystone 的一些测试脚本。最后一项是可选的。）</p>
+<p>为了方便，可以将以上内容保存成文件 <code>requirements.txt</code>。然后，通过以下命令来解压所需的文件：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat requirements.txt | xargs tar xzf keystone.tar.gz --wildcards</span><br></pre></td></tr></table></figure>
+
+<p>解压后将生成 <code>keystone</code> 目录。通过以下命令来启动 QEMU：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">keystone&#x2F;qemu&#x2F;riscv64-softmmu&#x2F;qemu-system-riscv64 -m 2G -nographic \</span><br><span class="line">    -machine virt -bios keystone&#x2F;build&#x2F;bootrom.build&#x2F;bootrom.bin \</span><br><span class="line">    -kernel keystone&#x2F;build&#x2F;sm.build&#x2F;platform&#x2F;generic&#x2F;firmware&#x2F;fw_payload.elf \</span><br><span class="line">    -append &quot;console&#x3D;ttyS0 ro root&#x3D;&#x2F;dev&#x2F;vda&quot; \</span><br><span class="line">    -drive file&#x3D;keystone&#x2F;build&#x2F;buildroot.build&#x2F;images&#x2F;rootfs.ext2,format&#x3D;raw,id&#x3D;hd0 \</span><br><span class="line">    -device virtio-blk-device,drive&#x3D;hd0 \</span><br><span class="line">    -netdev user,id&#x3D;net0,net&#x3D;192.168.100.1&#x2F;24,dhcpstart&#x3D;192.168.100.128,hostfwd&#x3D;tcp::8022-:22 \</span><br><span class="line">    -device virtio-net-device,netdev&#x3D;net0 -device virtio-rng-pci -smp 1</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>hostfwd=tcp::8022-:22</code> 会使得 QEMU 在 8022 端口上转发 SSH 连接。QEMU 内的系统成功启动后，应该能看到如下提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Welcome to Buildroot</span><br><span class="line">buildroot login:</span><br></pre></td></tr></table></figure>
+
+<p>系统的登录用户名为 <code>root</code>，密码为 <code>sifive</code>。成功登录之后，执行以下命令来测试 Keystone 是否正常工作：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insmod keystone-driver.ko</span><br><span class="line">./tests.ke</span><br></pre></td></tr></table></figure>
+
+<p>运行 <code>tests.ke</code> 时，应该能看到如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># .&#x2F;tests.ke</span><br><span class="line">Verifying archive integrity... All good.</span><br><span class="line">Uncompressing Keystone Enclave Package</span><br><span class="line">testing stack</span><br><span class="line">testing loop</span><br><span class="line">testing malloc</span><br><span class="line">testing long-nop</span><br><span class="line">testing fibonacci</span><br><span class="line">testing fib-bench</span><br><span class="line">testing attestation</span><br><span class="line">Attestation report SIGNATURE is valid</span><br><span class="line">testing untrusted</span><br><span class="line">Enclave said: hello world!</span><br><span class="line">Enclave said: 2nd hello world!</span><br><span class="line">Enclave said value: 13</span><br><span class="line">Enclave said value: 20</span><br><span class="line">testing data-sealing</span><br><span class="line">Enclave said: Sealing key derivation successful!</span><br></pre></td></tr></table></figure>
+
+<p>完成测试后，可以通过 <code>poweroff</code> 命令关闭虚拟机并退出 QEMU。</p>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2021-04-24");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2021-04-24T17:54:06.000Z" itemprop="datePublished">2021-04-24</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+
+
+<span class="post-tags-list mt-2">
+
+<a class="post-tags-list-item" href="/tags/keystone/" rel="tag">#&nbsp;keystone</a>
+
+</span>
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/2021-04/hello-world/" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">Hello, world!</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="https://new-tee-os.github.io">Hexo</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
