@@ -21,8 +21,20 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+      - name: Cache node_modules of Suka theme
+        uses: actions/cache@v2
+        with:
+          path: themes/suka/node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
       - name: Install dependencies
         uses: Borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - name: Install dependencies for Suka theme
+        uses: Borales/actions-yarn@v2.3.0
+        working-directory: ./themes/suka
         with:
           cmd: install
       - name: Build
@@ -34,4 +46,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: master
+          publish_branch: gh-pages
