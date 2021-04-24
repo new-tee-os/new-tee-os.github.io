@@ -10,10 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+
       - name: Cache node_modules
         uses: actions/cache@v2
         with:
@@ -21,6 +23,7 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+
       - name: Cache node_modules of Suka theme
         uses: actions/cache@v2
         with:
@@ -28,19 +31,17 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+
       - name: Install dependencies
-        uses: Borales/actions-yarn@v2.3.0
-        with:
-          cmd: install
+        run: npm install
+
       - name: Install dependencies for Suka theme
-        uses: Borales/actions-yarn@v2.3.0
         working-directory: ./themes/suka
-        with:
-          cmd: install
+        run: npm install
+
       - name: Build
-        uses: Borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
+        run: npm run build
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
