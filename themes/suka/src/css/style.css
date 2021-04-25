@@ -699,7 +699,8 @@ a.category-link {
 
 #post-content a {
     background-color: transparent;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
 }
 
 #post-content a:hover {
