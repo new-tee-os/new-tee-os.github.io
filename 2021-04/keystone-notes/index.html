@@ -144,7 +144,7 @@
     <meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="Hexo"><meta name="msapplication-starturl" content="https://new-tee-os.github.io"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <!-- ### The Open Graph & Twitter Card Protocol ### -->
-    <meta property="og:title" content="Keystone 学习笔记 | Hexo"><meta property="og:site_name" content="Hexo"><meta property="og:type" content="article"><meta property="og:url" content="https://new-tee-os.github.io/2021-04/keystone-notes/"><meta property="og:locale" content="en"><meta name="description" content="Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是选择在现有指令集的基础上进行大量扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成 - John Doe - Hexo"><meta name="keywords" content="keystone"><meta property="og:image" content="https://new-tee-os.github.io/2021-04/keystone-notes/keystone-docker-layers.png"><meta property="article:published_time" content="2021-04-24T17:54:06.000Z"><meta property="article:modified_time" content="2021-04-24T15:00:15.965Z"><meta property="og:updated_time" content="2021-04-24T15:00:15.965Z"><meta property="article:author" content="John Doe"><meta property="article:tag" content="keystone"><meta name="twitter:card" content="summary">
+    <meta property="og:title" content="Keystone 学习笔记 | Hexo"><meta property="og:site_name" content="Hexo"><meta property="og:type" content="article"><meta property="og:url" content="https://new-tee-os.github.io/2021-04/keystone-notes/"><meta property="og:locale" content="en"><meta name="description" content="Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE 来说，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是对现有的指令集进行大量的扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone 的运行。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其 - John Doe - Hexo"><meta name="keywords" content="keystone"><meta property="og:image" content="https://new-tee-os.github.io/2021-04/keystone-notes/keystone-docker-layers.png"><meta property="article:published_time" content="2021-04-24T17:54:06.000Z"><meta property="article:modified_time" content="2021-04-25T12:01:31.968Z"><meta property="og:updated_time" content="2021-04-25T12:01:31.968Z"><meta property="article:author" content="John Doe"><meta property="article:tag" content="keystone"><meta name="twitter:card" content="summary">
 
     
 
@@ -185,7 +185,7 @@
     },
     
     "datePublished": "2021-04-24T17:54:06.000Z",
-    "dateModified": "2021-04-24T15:00:15.965Z",
+    "dateModified": "2021-04-25T12:01:31.968Z",
     "author": {
         "@type": "Person",
         "name": "John Doe",
@@ -211,7 +211,7 @@
     },
     
     "keywords": "keystone",
-    "description": "Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是选择在现有指令集的基础上进行大量扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成 - John Doe - Hexo"
+    "description": "Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE 来说，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是对现有的指令集进行大量的扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone 的运行。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其 - John Doe - Hexo"
 }
 </script>
 
@@ -412,16 +412,23 @@
                         
                     
                     <article id="post-content">
-                        <p>Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是选择在现有指令集的基础上进行大量扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成本。</p>
+                        <p>Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 TEE 来说，Keystone 的特点是它巧妙地利用了很多 RISC-V 已有的功能来实现其安全性，而不是对现有的指令集进行大量的扩展。因此，现有的 RISC-V CPU 仅需要极小的改动就能够支持 Keystone 的运行。同时，这也使得有 RISC-V 背景的人能够快速适应 Keystone 的思维方式，降低其学习成本。</p>
 <h2 id="Keystone-与-RISC-V"><a href="#Keystone-与-RISC-V" class="headerlink" title="Keystone 与 RISC-V"></a>Keystone 与 RISC-V</h2><p>在实现上，Keystone 主要利用了 RISC-V 的以下这些特性：</p>
 <ul>
-<li>RISC-V 通过 M, S, U 三个特权模式，将 CPU 上运行的代码分为 固件，操作系统，用户程序 三大层级。其中 M 模式运行的通常是固件上的代码，并且拥有对于机器硬件的最高权限。Keystone 对 OpenSBI 这一开源 RISC-V 固件进行了一定的扩展，称为 <strong>security monitor</strong> (<strong>SM</strong>)，以提供高于操作系统的安全管理功能。</li>
-<li>但是，仅有安全管理功能是不够的，TEE 必须保证 Enclave 与 host OS 之间的可靠 <strong>内存隔离</strong>。而在 RISC-V 上，S 模式拥有对于页表的完全控制权，因此在理论上，任何一个 S 模式的程序都可以通过操作分页功能来访问到所有的物理内存。因此，仅靠页表来限制 S 模式的内存访问是不可行的。</li>
-<li>但除了页表之外，RISC-V 还提供了称为 <strong>物理内存保护</strong>（physical memory protection, PMP）的功能来进一步限制对物理内存的访问。通常 PMP 提供 8 个寄存器，可以设置 8 个内存区域的访问权限，并且这些寄存器均只能在 M 模式下访问。Keystone 便是利用 PMP 来实现 Enclave 对 host OS 的内存隔离。</li>
+<li>RISC-V 通过 <strong>M, S, U</strong> 三个特权模式，将 CPU 上运行的代码分为 <strong>固件，操作系统，用户程序</strong> 三大层级。其中 M 模式运行的通常是固件上的代码，并且拥有对于机器硬件的最高权限。Keystone 对 OpenSBI 这一开源 RISC-V 固件进行了一定的扩展，称为 <strong>security monitor</strong> (<strong>SM</strong>)，以提供高于操作系统的安全管理功能。</li>
+<li>但是，仅有安全管理功能是不够的，TEE 必须保证 Enclave 与 host OS 之间的可靠 <strong>内存隔离</strong>。而在 RISC-V 上，S 模式拥有对于分页功能的完全控制权，因此在理论上，任何一个 S 模式的程序都可以通过操作分页功能来访问到所有的物理内存。因此，仅靠页表来限制 S 模式的内存访问是不可行的。</li>
+<li>但除了页表之外，RISC-V 还提供了称为 <strong>物理内存保护</strong>（physical memory protection, PMP）的功能来进一步限制对物理内存的访问。该限制作用于物理内存而非虚拟内存，并且对所有的特权模式（包括 M 模式）均生效。举例说，QEMU 提供 16 个 PMP 寄存器，可以配置 16 个内存区域的访问限制，并且这些寄存器均只能在 M 模式下访问。Keystone 便是利用 PMP 来实现 Enclave 与 host OS 之间的内存隔离。</li>
 </ul>
-<p>除了内存隔离和与 host OS 的有限交互功能之外，一个 Keystone Enclave 与一个普通的操作系统套件并无二致，它们都运行在 S 模式下，并且可以使用 S 模式提供的所有功能。</p>
-<h2 id="Keystone-架构总览"><a href="#Keystone-架构总览" class="headerlink" title="Keystone 架构总览"></a>Keystone 架构总览</h2><p>我们可以把 Keystone 的架构分为 硬件，M 模式，S 模式 三大部分，详细介绍如下。</p>
-<p>【TODO……】</p>
+<p>除了内存隔离，以及与 host OS 之间的交互之外，一个 Keystone Enclave 与一个普通的操作系统 + 用户程序套件并无二致，它们的「操作系统」部分都运行在 S 模式下，并且可以使用 S 模式提供的所有功能，而「用户程序」部分完全由「操作系统」部分管理。</p>
+<p>如果想要了解更多的与 Keystone 有关的 RISC-V 背景知识，请参考 Keystone 官方文档中的 <a target="_blank" rel="noopener" href="http://docs.keystone-enclave.org/en/latest/Getting-Started/How-Keystone-Works/RISC-V-Background.html">2.1 RISC-V Background</a> 一节。</p>
+<h2 id="Keystone-架构总览"><a href="#Keystone-架构总览" class="headerlink" title="Keystone 架构总览"></a>Keystone 架构总览</h2><p>我们可以把 Keystone 的架构分为 <strong>硬件，M 模式，S 模式，U 模式</strong> 四大部分，详细介绍如下。</p>
+<ul>
+<li>RISC-V 没有内置密码学、信任链等安全功能。因此，在 <strong>硬件</strong> 上，Keystone 需要在 CPU 核心内安装一个 <strong>可信模块</strong>（root of trust），以保护 SM 固件不被恶意修改。（注：此点存疑，因为 Keystone 给 QEMU 的 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone/blob/v1.0.0/patches/qemu/qemu-secure-boot.patch">补丁</a> 并没有增加任何硬件功能。）</li>
+<li>运行在 <strong>M 模式</strong> 上的 SM 是 Keystone 的主体部分，提供内存隔离和 Enclave 管理功能。源代码位于 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/sm">sm</a>。</li>
+<li>Enclave 内部也需要有一个运行在 <strong>S 模式</strong> 的部分，对应于一般意义上的操作系统，称为 Keystone Runtime。Keystone 提供的默认 Runtime 称为 <strong>Eyrie</strong>，其源代码位于 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/keystone-runtime">keystone-runtime</a>。其代码量较小，但功能丰富，提供 Linux syscall，内存分配，内存加密等功能。</li>
+<li>如果 host OS 是 Linux，则由于 SM 所提供的功能只有 S 模式下才能够访问，因此 Keystone 需要加载一个 <strong>Linux 内核模块</strong> 来帮助 Enclave 使用 SM 提供的功能，称为 Keystone driver。对应的源代码位于 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave/linux-keystone-driver">linux-keystone-driver</a>。</li>
+<li>每个 <strong>Keystone Enclave 可执行文件</strong> 实际上是一个自解压的压缩包，其中包含 <strong>Keystone Runtime</strong>，<strong>host application</strong> 及 <strong>eapp</strong>。程序运行时，会自动解压出所有的文件，然后运行 <strong>host application</strong>，再由 <strong>host application</strong> 连接 <strong>Keystone driver</strong>，加载 <strong>Runtime</strong> 和 <strong>eapp</strong> 并运行。</li>
+</ul>
 <h2 id="Keystone-源代码组织结构"><a href="#Keystone-源代码组织结构" class="headerlink" title="Keystone 源代码组织结构"></a>Keystone 源代码组织结构</h2><p>Keystone Enclave 的所有源代码均托管在其 <a target="_blank" rel="noopener" href="https://github.com/keystone-enclave">GitHub 组织</a> 下。由于 Keystone 尚处于测试阶段，因此没有稳定的发行周期，其编译脚本会经常性地通过 <code>git pull</code> 直接从 GitHub 上拉取代码。因此在编译前，需要准备好稳定的网络。</p>
 <p>Keystone Enclave 有两个主要的入口点：</p>
 <ul>
@@ -450,7 +457,7 @@
 <p>镜像下载完成之后，即可从中提取我们所需要的文件。为了运行完整的 Keystone 测试套件，我们需要的文件列表如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">keystone&#x2F;build&#x2F;bootrom.build&#x2F;bootrom.bin</span><br><span class="line">keystone&#x2F;build&#x2F;bootrom.build&#x2F;bootrom.elf</span><br><span class="line">keystone&#x2F;build&#x2F;sm.build&#x2F;platform&#x2F;generic&#x2F;firmware&#x2F;fw_payload.bin</span><br><span class="line">keystone&#x2F;build&#x2F;sm.build&#x2F;platform&#x2F;generic&#x2F;firmware&#x2F;fw_payload.elf</span><br><span class="line">keystone&#x2F;build&#x2F;buildroot.build&#x2F;images&#x2F;rootfs.ext2</span><br><span class="line">keystone&#x2F;qemu&#x2F;riscv64-softmmu&#x2F;qemu-system-riscv64</span><br><span class="line">keystone&#x2F;build&#x2F;scripts&#x2F;*</span><br></pre></td></tr></table></figure>
 
-<p>（注：以上这些文件自上而下分别是：2 个 Keystone SM 固件，2 个 Linux 内核，Linux 根文件系统，QEMU RISC-V，以及 Keystone 的一些测试脚本。最后一项是可选的。）</p>
+<p>（注：以上这些文件自上而下分别是：2 个 Keystone SM 固件，2 个 Linux 内核，Linux 根文件系统，QEMU RISC-V 可执行文件，以及 Keystone 的一些测试脚本。最后一项是可选的。）</p>
 <p>为了方便，可以将以上内容保存成文件 <code>requirements.txt</code>。然后，通过以下命令来解压所需的文件：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat requirements.txt | xargs tar xzf keystone.tar.gz --wildcards</span><br></pre></td></tr></table></figure>
 
@@ -475,7 +482,7 @@
     <blockquote id="date-expire-notification" class="post-expired-notify">This article was last updated on <span id="date-expire-num"></span> days ago, and the information described in the article may have changed.</blockquote>
     <script>
     (function() {
-        var dateUpdate = Date.parse("2021-04-24");
+        var dateUpdate = Date.parse("2021-04-25");
         var nowDate = new Date();
         var a = nowDate.getTime();
         var b = a - dateUpdate;
@@ -490,6 +497,8 @@
 
 
 <p class="post-footer-info mb-0 pt-0">Published at&nbsp;<time datetime="2021-04-24T17:54:06.000Z" itemprop="datePublished">2021-04-24</time>
+
+    , Updated at&nbsp;<time datetime="2021-04-25T12:01:31.968Z" itemprop="dateModified">2021-04-25</time>
 
 </p>
 <p class="post-footer-info mb-0 pt-2">
@@ -510,15 +519,15 @@
 <ul class="pagination">
     <!-- Prev Nav -->
     
-
-    <!-- Next Nav -->
-    
-        <li class="page-item page-next">
-            <a href="/2021-04/hello-world/" rel="next">
-                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+        <li class="page-item page-prev">
+            <a href="/2021-04/hello-world/" rel="prev">
+                <div class="page-item-title"><i class="icon icon-back" aria-hidden="true"></i></div>
                 <div class="page-item-subtitle">Hello, world!</div>
             </a>
         </li>
+    
+
+    <!-- Next Nav -->
     
 </ul>
 </div>
