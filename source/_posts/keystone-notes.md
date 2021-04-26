@@ -8,6 +8,16 @@ Keystone 是 RISC-V 架构上的一种 TEE 实现。相对于大多数商业的 
 
 Keystone 的官方网站为 https://keystone-enclave.org/ ，网站上有详细的说明文档可供参考。
 
+## 文章关键词总览
+
+- **M，S，U 模式**：RISC-V 标准中定义的三种特权模式，分别对应于 固件，操作系统，用户程序。
+- **security monitor** (SM)：Keystone 的主体部分，运行在 M 模式下，提供 Enclave 管理及内存隔离功能。
+- **物理内存保护**（physical memory protection, PMP）：RISC-V 标准中定义的一种特性，能够限制程序对 物理内存 的访问，对所有的特权模式（包括 M 模式）均生效。寄存器的个数取决于硬件，如 QEMU 支持 16 个 PMP 寄存器，且只能在 M 模式下访问。
+- **Keystone runtime**：Keystone Enclave 中运行在 S 模式下的部分，为 eapp 提供操作系统的功能。
+- **eapp**：Keystone Enclave 中运行在 U 模式下的部分，受到 Keystone 隔离的安全应用程序。
+- **host application**：运行在不受信任的 host OS 上，与 Keystone Enclave 交互的程序。
+- **Keystone driver**：为了帮助 host application 访问 SM 的功能而设计的 Linux 内核模块。
+
 ## Keystone 与 RISC-V
 
 在实现上，Keystone 主要利用了 RISC-V 的以下这些特性：
@@ -16,7 +26,7 @@ Keystone 的官方网站为 https://keystone-enclave.org/ ，网站上有详细�
 - 但是，仅有安全管理功能是不够的，TEE 必须保证 Enclave 与 host OS 之间的可靠 **内存隔离**。而在 RISC-V 上，S 模式拥有对于页表的完全控制权，因此在理论上，任何一个 S 模式的程序都可以通过操作分页功能来访问到所有的物理内存。因此，仅靠页表来限制 S 模式的内存访问是不可行的。
 - 但除了页表之外，RISC-V 还提供了称为 **物理内存保护**（physical memory protection, PMP）的功能来进一步限制对物理内存的访问。该限制作用于物理内存而非虚拟内存，并且对所有的特权模式（包括 M 模式）均生效。举例说，QEMU 提供 16 个 PMP 寄存器，可以配置 16 个内存区域的访问限制，并且这些寄存器均只能在 M 模式下访问。Keystone 便是利用 PMP 来实现 Enclave 与 host OS 之间的内存隔离。
 
-除了内存隔离，以及与 host OS 之间的交互之外，一个 Keystone Enclave 与一个普通的操作系统 + 用户程序套件并无二致，它们的「操作系统」部分都运行在 S 模式下，并且可以使用 S 模式提供的所有功能，而「用户程序」部分完全由「操作系统」部分管理。
+除了内存隔离，以及与 host OS 之间的交互之外，一个 Keystone Enclave 与普通的「操作系统 + 用户程序」套件并无二致，它们的「操作系统」部分都运行在 S 模式下，并且可以使用 S 模式提供的所有功能，而「用户程序」部分完全由「操作系统」部分管理。
 
 如果想要了解更多的与 Keystone 有关的 RISC-V 背景知识，请参考 Keystone 官方文档中的 [2.1 RISC-V Background](http://docs.keystone-enclave.org/en/latest/Getting-Started/How-Keystone-Works/RISC-V-Background.html) 一节。
 
