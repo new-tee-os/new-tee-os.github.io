@@ -6,6 +6,8 @@ tags: keystone
 
 Keystone 的一次完整构建大约需要消耗 4 GB 的硬盘空间，但我们所需要的很可能只是其中的一小部分（比如我们可能只需要一个 QEMU 作为运行和测试环境）。由于 Keystone 的 Docker 镜像是已经预先编译好的，我们可以尝试从 Docker Hub 上直接下载 Keystone 的镜像，并提取我们所需要的文件。
 
+如果您觉得手动提取比较麻烦，您也可以直接下载我们已经提取好的文件 [keystone-20210423.tar.gz](https://github.com/new-tee-os/new-tee-os.github.io/releases/download/attachments/keystone-20210423.tar.gz)，并直接跳到【启动 QEMU】一节。
+
 注意，Docker 镜像中的 QEMU 是动态链接的，因此系统上需要预先安装有所需的库，否则 QEMU 将无法正常启动。笔者总结的依赖列表如下：
 
 ```
