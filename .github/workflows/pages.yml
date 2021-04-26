@@ -28,19 +28,19 @@ jobs:
         uses: actions/cache@v2
         with:
           path: themes/suka/node_modules
-          key: ${{ runner.OS }}-npm-cache
+          key: ${{ runner.OS }}-npm-cache-themes-suka
           restore-keys: |
-            ${{ runner.OS }}-npm-cache
+            ${{ runner.OS }}-npm-cache-themes-suka
 
       - name: Install dependencies
-        run: npm install
+        run: yarn
 
       - name: Install dependencies for Suka theme
         working-directory: ./themes/suka
-        run: npm install
+        run: yarn
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Bypass warnings about Jekyll themes
         run: touch ./public/.nojekyll
