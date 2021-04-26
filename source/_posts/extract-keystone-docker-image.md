@@ -14,6 +14,8 @@ glib2 zlib pixman util-linux-libs gcc-libs libffi pcre
 
 如果以上的依赖列表不能解决您的问题，您也可以尝试直接从 Docker 镜像中提取所需的库文件。
 
+## Docker 镜像下载
+
 从 Docker Hub 下载镜像可以参考这篇问答：[Downloading Docker Images from Docker Hub without using Docker](https://devops.stackexchange.com/questions/2731/downloading-docker-images-from-docker-hub-without-using-docker)，参见题主的 **UPDATE 2** 部分。以下列出所需使用的 URL 以供参考。
 
 - 认证：`https://auth.docker.io/token?service=registry.docker.io&scope=repository:keystoneenclaveorg/keystone:pull`
@@ -28,7 +30,7 @@ glib2 zlib pixman util-linux-libs gcc-libs libffi pcre
 
 镜像格式为 tar.gz，可以通过 curl 参数 `-o keystone.tar.gz` 将其直接保存下来。（小提示：如果因为网络环境不稳定导致下载中断，可以添加 `-C -` 参数恢复下载。）
 
----
+## 文件提取
 
 镜像下载完成之后，即可从中提取我们所需要的文件。为了运行完整的 Keystone 测试套件，我们需要的文件列表如下：
 
@@ -50,7 +52,11 @@ keystone/build/scripts/*
 cat requirements.txt | xargs tar xzf keystone.tar.gz --wildcards
 ```
 
-解压后将生成 `keystone` 目录。通过以下命令来启动 QEMU：
+解压后将生成 `keystone` 目录，其中包含了我们在 `requirements.txt` 中所列出的文件。
+
+## 启动 QEMU
+
+解压完成后，通过以下命令来启动 QEMU：
 
 ```
 keystone/qemu/riscv64-softmmu/qemu-system-riscv64 -m 2G -nographic \
